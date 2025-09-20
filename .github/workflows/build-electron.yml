@@ -21,8 +21,14 @@ jobs:
         with:
           node-version: 18
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Install dependencies
         run: pnpm install
+
+      - name: Install dmg-license
+        run: pnpm add dmg-license
 
       - name: Build application
         run: pnpm run build
@@ -31,7 +37,7 @@ jobs:
         run: npx electron-builder --linux --win --mac
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: electron-app
           path: dist_electron

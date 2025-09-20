@@ -72,5 +72,7 @@
     "linux": {
       "target": "AppImage"
     }
-  }
+  },
+  "description": "A desktop application for ClassWork.",
+  "author": "DannyFeng"
 }
