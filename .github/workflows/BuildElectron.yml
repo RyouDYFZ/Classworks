@@ -31,7 +31,7 @@ jobs:
         run: npx electron-builder --linux --win --mac
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: electron-app
           path: dist_electron
