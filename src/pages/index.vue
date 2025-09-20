@@ -93,50 +93,6 @@
         </div>
       </div>
       <v-btn
-        v-if="!state.synced"
-        color="error"
-        size="large"
-        :loading="loading.upload"
-        class="ml-2"
-        @click="manualUpload"
-      >
-        上传
-      </v-btn>
-      <v-btn v-else color="success" size="large" @click="showSyncMessage">
-        同步完成
-      </v-btn>
-      <v-btn
-        v-if="showRandomPickerButton"
-        color="amber"
-        prepend-icon="mdi-account-question"
-        append-icon="mdi-dice-multiple"
-        size="large"
-        class="ml-2"
-        @click="openRandomPicker"
-      >
-        随机点名
-      </v-btn>
-      <v-btn
-        v-if="showExamScheduleButton"
-        color="green"
-        prepend-icon="mdi-calendar-check"
-        size="large"
-        class="ml-2"
-        @click="$router.push('/examschedule')"
-      >
-        考试看板
-      </v-btn>
-      <v-btn
-        v-if="showListCardButton"
-        color="primary-darken-1"
-        prepend-icon="mdi-list-box"
-        size="large"
-        class="ml-2"
-        @click="$router.push('/list')"
-      >
-        列表
-      </v-btn>
-      <v-btn
         v-if="showFullscreenButton"
         :color="state.isFullscreen ? 'blue-grey' : 'blue'"
         :prepend-icon="
@@ -558,13 +514,6 @@
     </v-card>
   </v-dialog>
 
-  <!-- 添加随机点名组件 -->
-  <random-picker
-    ref="randomPicker"
-    :student-list="state.studentList"
-    :attendance="state.boardData.attendance"
-  />
-
   <!-- 添加URL配置确认对话框 -->
   <v-dialog v-model="urlConfigDialog.show" max-width="500">
     <v-card>
@@ -614,7 +563,6 @@
 
 <script>
 import MessageLog from "@/components/MessageLog.vue";
-import RandomPicker from "@/components/RandomPicker.vue";
 import NamespaceAccess from "@/components/NamespaceAccess.vue";
 import FloatingToolbar from "@/components/FloatingToolbar.vue";
 import FloatingICP from "@/components/FloatingICP.vue";
@@ -638,7 +586,6 @@ export default {
   name: "Classworks 作业板",
   components: {
     MessageLog,
-    RandomPicker,
     NamespaceAccess,
     FloatingToolbar,
     FloatingICP,
@@ -831,9 +778,6 @@ export default {
     unreadCount() {
       return this.$refs.messageLog?.unreadCount || 0;
     },
-    showRandomPickerButton() {
-      return getSetting("randomPicker.enabled");
-    },
     showListCardButton() {
       return getSetting("display.showListCard");
     },
@@ -975,9 +919,6 @@ export default {
         this.fullscreenChangeHandler
       );
 
-      this.checkHashForRandomPicker();
-
-      window.addEventListener("hashchange", this.checkHashForRandomPicker);
     } catch (err) {
       console.error("初始化失败:", err);
       this.showError("初始化失败，请刷新页面重试");
@@ -1008,8 +949,6 @@ export default {
       "MSFullscreenChange",
       this.fullscreenChangeHandler
     );
-
-    window.removeEventListener("hashchange", this.checkHashForRandomPicker);
   },
 
   methods: {
@@ -1705,22 +1644,6 @@ export default {
       }
     },
 
-    openRandomPicker() {
-      if (this.$refs.randomPicker) {
-        this.$refs.randomPicker.open();
-      }
-    },
-
-    checkHashForRandomPicker() {
-      if (window.location.hash === "#random-picker") {
-        this.$nextTick(() => {
-          console.log("打开随机点名");
-          window.location.hash = "";
-          this.openRandomPicker();
-        });
-      }
-    },
-
     parseUrlConfig() {
       try {
         const urlParams = new URLSearchParams(window.location.search);
@@ -1846,7 +1769,6 @@ export default {
             "edit.",
             "refresh.",
             "font.",
-            "randomPicker.",
           ];
           for (const prefix of prefixes) {
             const prefixedKey = `${prefix}${key}`;

@@ -131,20 +131,6 @@ export default defineConfig({
             purpose: 'maskable'
           }
         ],
-        shortcuts: [
-          {
-            name: '随机点名',
-            short_name: '随机点名',
-            url: './#random-picker',
-            icons: [
-              {
-                src: './pwa/image/pwa-64x64.png',
-                sizes: '64x64',
-                type: 'image/png'
-              }
-            ]
-          },
-        ],
       }
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme

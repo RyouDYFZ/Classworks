@@ -154,9 +154,6 @@
         </v-tabs-window-item>
 
 
-        <v-tabs-window-item value="randomPicker">
-          <random-picker-card border :is-mobile="isMobile" />
-        </v-tabs-window-item>
         <v-tabs-window-item value="subject">
           <subject-management-card border /> <br />
           <homework-template-card border />
@@ -239,7 +236,6 @@ import "../styles/settings.scss";
 import SettingsExplorer from "@/components/settings/SettingsExplorer.vue";
 import SettingsLinkGenerator from "@/components/SettingsLinkGenerator.vue";
 import NamespaceSettingsCard from "@/components/settings/cards/NamespaceSettingsCard.vue";
-import RandomPickerCard from "@/components/settings/cards/RandomPickerCard.vue";
 import HomeworkTemplateCard from "@/components/settings/cards/HomeworkTemplateCard.vue";
 import SubjectManagementCard from "@/components/settings/cards/SubjectManagementCard.vue";
 import KvDatabaseCard from "@/components/settings/cards/KvDatabaseCard.vue";
@@ -260,7 +256,6 @@ export default {
     SettingsExplorer,
     SettingsLinkGenerator,
     NamespaceSettingsCard,
-    RandomPickerCard,
     HomeworkTemplateCard,
     SubjectManagementCard,
     KvDatabaseCard,
@@ -400,12 +395,6 @@ export default {
           title: "主题",
           icon: "mdi-theme-light-dark",
           value: "theme",
-        },
-
-        {
-          title: "随机点名",
-          icon: "mdi-dice-multiple",
-          value: "randomPicker",
         },
 
         {

@@ -199,7 +199,7 @@ const settingsDefinitions = {
   },
   "server.classNumber": {
     type: "string",
-    default: "高三八班",
+    default: "高一6班",
     //validate: (value) => /^[A-Za-z0-9]*$/.test(value),
     validate: (value) => /.*/.test(value),
     description: "班级编号",
@@ -305,42 +305,6 @@ const settingsDefinitions = {
     // 启用后将不再记录应用消息到日志，可减少内存占用
   },
 
-  // 消息设置
-  "message.showSidebar": {
-    type: "boolean",
-    default: true,
-    description: "是否显示消息记录侧栏",
-    requireDeveloper: true, // 添加标记
-    icon: "mdi-message-text-outline",
-    // 控制是否显示消息历史记录侧栏，需要开发者模式
-  },
-  "message.maxActiveMessages": {
-    type: "number",
-    default: 5,
-    validate: (value) => value >= 1 && value <= 10,
-    description: "同时显示的最大消息数量",
-    requireDeveloper: true,
-    icon: "mdi-message-badge-outline",
-    // 控制界面上同时显示的最大消息数量，范围1-10条
-  },
-  "message.timeout": {
-    type: "number",
-    default: 5000,
-    validate: (value) => value >= 1000 && value <= 30000,
-    description: "消息自动关闭时间(毫秒)",
-    requireDeveloper: true,
-    icon: "mdi-timer-sand",
-    // 设置消息自动消失的时间，范围1000-30000毫秒
-  },
-  "message.saveHistory": {
-    type: "boolean",
-    default: true,
-    description: "是否保存消息历史记录",
-    requireDeveloper: true,
-    icon: "mdi-history",
-    // 启用后将保存消息历史记录，可在侧栏中查看
-  },
-
   // 主题设置
   "theme.mode": {
     type: "string",
@@ -349,66 +313,6 @@ const settingsDefinitions = {
     description: "主题模式",
     icon: "mdi-theme-light-dark",
     // 设置应用的主题模式，可选亮色或暗色主题
-  },
-
-  // 随机点名设置
-  "randomPicker.enabled": {
-    type: "boolean",
-    default: true,
-    description: "是否启用随机点名功能",
-    icon: "mdi-account-question",
-  },
-  "randomPicker.animation": {
-    type: "boolean",
-    default: true,
-    description: "是否启用随机点名动画效果",
-    icon: "mdi-animation-play",
-  },
-  "randomPicker.defaultCount": {
-    type: "number",
-    default: 1,
-    validate: (value) => value >= 1 && value,
-    description: "默认抽取人数",
-    icon: "mdi-counter",
-  },
-  "randomPicker.excludeAbsent": {
-    type: "boolean",
-    default: true,
-    description: "是否排除请假学生",
-    icon: "mdi-account-off",
-  },
-  "randomPicker.excludeLate": {
-    type: "boolean",
-    default: false,
-    description: "是否排除迟到学生",
-    icon: "mdi-clock-alert",
-  },
-  "randomPicker.excludeExcluded": {
-    type: "boolean",
-    default: true,
-    description: "是否排除不参与学生",
-    icon: "mdi-account-cancel",
-  },
-  "randomPicker.mode": {
-    type: "string",
-    default: "name",
-    validate: (value) => ["name", "number"].includes(value),
-    description: "随机点名模式",
-    icon: "mdi-format-list-numbered",
-  },
-  "randomPicker.maxNumber": {
-    type: "number",
-    default: 60,
-    validate: (value) => value >= 1 && value,
-    description: "学号模式最大值",
-    icon: "mdi-numeric",
-  },
-  "randomPicker.minNumber": {
-    type: "number",
-    default: 1,
-    validate: (value) => value >= 1 && value,
-    description: "学号模式最小值",
-    icon: "mdi-numeric-negative-1",
   },
 };
 

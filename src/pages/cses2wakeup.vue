@@ -46,7 +46,6 @@
             <!-- 输入方式选择 -->
             <v-tabs v-model="activeTab" class="mb-4 mx-2" color="primary" rounded>
               <v-tab value="text" class="px-5"><v-icon start>mdi-text-box</v-icon> 文本粘贴</v-tab>
-              <v-tab value="file" class="px-5"><v-icon start>mdi-file-upload</v-icon> 文件上传</v-tab>
             </v-tabs>
 
             <!-- 格式选择 -->
@@ -80,32 +79,6 @@
                     @input="handleTextChange"
                   ></v-textarea>
                 </div>
-              </v-window-item>
-              <v-window-item value="file">
-                <v-file-input
-                  v-model="file"
-                  accept=".js,.json,.yml,.yaml"
-                  label="选择课程表文件"
-                  prepend-icon="mdi-file-upload"
-                  :loading="loading"
-                  :disabled="loading"
-                  @change="handleFileChange"
-                  hint="支持JSON、YAML格式文件"
-                  persistent-hint
-                  :rules="[
-                    v => !v || v.size < 2000000 || '文件大小不能超过 2 MB',
-                  ]"
-                ></v-file-input>
-
-                <v-alert
-                  v-if="file && formatMode === 'auto'"
-                  type="info"
-                  class="mb-4"
-                  variant="tonal"
-                  density="compact"
-                >
-                  将根据文件扩展名自动检测格式
-                </v-alert>
               </v-window-item>
             </v-window>
 
